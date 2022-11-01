@@ -17,6 +17,17 @@ function Footer() {
     const [subscribedModal, setCentredModal0] = useState(false);
     const toggleShowSubscribed = () => setCentredModal0(!subscribedModal);
 
+
+    function submit(e) {
+        e.preventDefault();
+        toggleShowSubscribed();
+    }
+
+    function close(e) {
+        window.location.reload();
+    }
+
+
     return (
         <footer class="container-lg py-5">
             <div className="row">
@@ -61,10 +72,10 @@ function Footer() {
                     <div> 
                         <h5>Subscribe to our newsletter</h5>
                         <p>Monthly digest of whats new and exciting from us.</p>
-                            <form action="" className="d-flex w-100 gap-2">
+                            <form onSubmit={(e) => submit(e)} className="d-flex w-100 gap-2">
                                 <label htmlFor="email" className="visually_hidden">Email address</label>
-                                <input type="email" id="email" name="email" className="form-control" placeholder="Email address" required />
-                                <MDBBtn value='Subscribe' tag='input' size='sm' color='danger' onClick={toggleShowSubscribed} className=""/>
+                                <input  type="email" id="email" name="email" className="form-control" placeholder="Email address" required />
+                                <MDBBtn type='submit' value='Subscribe' tag='input' size='sm' color='danger' className=""/>
                             </form>
                     </div>
 
@@ -106,7 +117,7 @@ function Footer() {
                             <MDBModalTitle> 
                                 <strong>SPA Francorchamps</strong>
                             </MDBModalTitle>
-                            <MDBBtn className='btn-close' color='none' onClick={toggleShowSubscribed}></MDBBtn>
+                            <MDBBtn className='btn-close' color='none' onClick={(e) => close(e)}></MDBBtn>
                         </MDBModalHeader>
                         <MDBModalBody>
                             <div class="modal-body text-success">
@@ -114,7 +125,7 @@ function Footer() {
                             </div>
                         </MDBModalBody>
                         <MDBModalFooter>
-                            <MDBBtn color='success' type='submit' onClick={toggleShowSubscribed}>Ok, Got it!</MDBBtn>
+                            <MDBBtn color='success' type='submit' onClick={(e) => close(e)}>Ok, Got it!</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

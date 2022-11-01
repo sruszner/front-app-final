@@ -20,9 +20,9 @@ import {
 function Views() {
 
     const title = "TABLE"
-    const URLget = "http://localhost:9000/";
-    const URLdel = "http://localhost:9000/delete";
-    const URLup = "http://localhost:9000/update";
+    const URLget = "https://back-app-final.herokuapp.com/";
+    const URLdel = "https://back-app-final.herokuapp.com/delete";
+    const URLup = "https://back-app-final.herokuapp.com/update";
 
     const [editModal, setCentredModal] = useState(false);
     const toggleShowEdit = () => {
@@ -81,6 +81,9 @@ function Views() {
         console.log(newdata);
     }
 
+/*     function close(e) {
+        window.location.reload();
+    } */
 
     return (
         <Container className="py-5">
@@ -161,7 +164,7 @@ function Views() {
                                 </div>
                             </MDBModalBody>
                             <MDBModalFooter>
-                                {/*<button className='btn btn-danger' data-bs-dismiss="modal">
+{/*                                 <button className='btn btn-danger'onClick={(e) => close(e)} >
                                     Cancel
                                 </button> */}
                                 <MDBBtn color='success' type='submit' onClick={toggleShowEdit}>
