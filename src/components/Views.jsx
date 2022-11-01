@@ -105,7 +105,7 @@ function Views() {
                     <tr>
                         <th scope="col"> Id </th>
                         <th scope="col"> Name </th>
-                        <th scope="col"> Last Name </th>
+                        <th scope="col"> Surname </th>
                         <th scope="col"> Email </th>
                         <th scope="col"> Country </th>
                         <th scope="col"> Message </th>
