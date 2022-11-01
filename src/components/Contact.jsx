@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 import Axios from 'axios';
 
 function Contact() {
 
     const URL = "http://localhost:9000/create";
-    
+
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -30,7 +31,7 @@ function Contact() {
             zip: data.zip,
             plan: data.plan,
             message: data.message,
-            metOn: "data.metOn"
+            metOn: data.metOn
         })
             .then(res => {
                 console.log(res.data);
@@ -116,14 +117,14 @@ function Contact() {
 
                             <div className="col-md-5">
                                 <label for="country" className="form-label">Country</label>
-                                <select className="form-select" onChange={(e) => handle(e)} id="country" name="country" value={data.country} required>
+                                <Form.Select className="form-select" onChange={(e) => handle(e)} id="country" name="country" value={data.country} required>
                                     <option value="">Choose...</option>
                                     <option>Argentina</option>
                                     <option>Belgium</option>
                                     <option>France</option>
                                     <option>Germany</option>
                                     <option>United States</option>
-                                </select>
+                                </Form.Select>
                                 <div className="invalid-feedback">
                                     Please select a valid country.
                                 </div>
@@ -131,14 +132,14 @@ function Contact() {
 
                             <div className="col-md-4">
                                 <label for="state" className="form-label">State</label>
-                                <select className="form-select" name="state" required>
+                                <Form.Select className="form-select" name="state" required>
                                     <option value="">Choose...</option>
                                     <option>Buenos Aires</option>
                                     <option>Brussels</option>
                                     <option>Paris</option>
                                     <option>Berlin</option>
                                     <option>California</option>
-                                </select>
+                                </Form.Select>
                                 <div className="invalid-feedback">
                                     Please provide a valid state.
                                 </div>
@@ -155,14 +156,14 @@ function Contact() {
 
                             <div className="col-md-5">
                                 <label for="plan" className="form-label">Plan</label>
-                                <select className="form-select" onChange={(e) => handle(e)} id="plan" value={data.plan} name="plan" required>
+                                <Form.Select className="form-select" onChange={(e) => handle(e)} id="plan" value={data.plan} name="plan" required>
                                     <option value="">Choose...</option>
-                                    <option value="1">Free</option>
-                                    <option value="2">Basic</option>
-                                    <option value="3">Premium</option>
-                                    <option value="4">Premium D+</option>
-                                    <option value="5">Cancel my plan</option>
-                                </select>
+                                    <option value="Free">Free</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Premium">Premium</option>
+                                    <option value="Premium D+">Premium D+</option>
+                                    <option value="Cancel my plan">Cancel my plan</option>
+                                </Form.Select>
                                 <div className="invalid-feedback">
                                     Please select a valid option.
                                 </div>
@@ -196,17 +197,17 @@ function Contact() {
 
                         <h4 className="mb-3">Where you met us?</h4>
 
-                        <div className="my-3" id="metOn">
+                        <div className="my-3">
                             <div class="form-check">
-                                <input id="TV" name="metOn" onChange={(e) => handle(e)} value="TV" type="radio" className="form-check-input" Cheked required />
+                                <input id="metOn" name="metOn" onChange={(e) => handle(e)} value="TV" type="radio" className="form-check-input"  required />
                                 <label htmlFor="tv" className="form-check-label">TV      </label>
                             </div>
                             <div className="form-check">
-                                <input type="radio" onChange={(e) => handle(e)} value="default" id="socialmedia" name="metOn" className="form-check-input" required />
+                                <input type="radio" onChange={(e) => handle(e)} value="Social Media" id="metOn" name="metOn" className="form-check-input" required />
                                 <label htmlFor="socialmedia" className="form-check-label">Social Media</label>
                             </div>
                             <div className="form-check">
-                                <input id="other" name="metOn" type="radio" onChange={(e) => handle(e)} value="default" className="form-check-input" required />
+                                <input id="metOn" name="metOn" type="radio" onChange={(e) => handle(e)} value="Others" className="form-check-input" required />
                                 <label htmlFor="other" className="form-check-label" >Other   </label>
                             </div>
                         </div>

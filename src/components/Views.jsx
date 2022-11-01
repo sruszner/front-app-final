@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
 import Container from "react-bootstrap/esm/Container";
 import {
     MDBBtn,
@@ -24,7 +25,9 @@ function Views() {
     const URLup = "http://localhost:9000/update";
 
     const [editModal, setCentredModal] = useState(false);
-    const toggleShowEdit = () => setCentredModal(!editModal);
+    const toggleShowEdit = () => {
+        setCentredModal(!editModal);
+    }
 
     const [deleteModal, setCentredModal1] = useState(false);
     const toggleShowDelete = () => setCentredModal1(!deleteModal);
@@ -85,6 +88,14 @@ function Views() {
             <hr className="" />
             <h1 className="text-center"> {title} </h1>
             <hr />
+            <div className="m-2">
+                <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowEdit}>
+                    <i className='fas fa-times'>Edit</i>
+                </MDBBtn>
+                <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowDelete}>
+                    <i className='fas fa-times'>Delete</i>
+                </MDBBtn>
+            </div>
 
             <MDBTable striped hover bordered small align="middle" responsive className="text-center text-uppercase">
                 <MDBTableHead dark className="">
@@ -94,9 +105,8 @@ function Views() {
                         <th scope="col"> Last Name </th>
                         <th scope="col"> Email </th>
                         <th scope="col"> Country </th>
-                        <th scope="col"> Zip </th>
                         <th scope="col"> Message </th>
-                        <th scope="col">Actions</th>
+                        <th scope="col">Plan</th>
                     </tr>
                 </MDBTableHead>
                 {contacts.map((contact) => (
@@ -107,29 +117,23 @@ function Views() {
                             <td>{contact.lastName}</td>
                             <td>{contact.email}</td>
                             <td>{contact.country}</td>
-                            <td>{contact.zip}</td>
                             <td>{contact.message}</td>
-                            <td>
-                                <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowEdit}>
-                                    <i className='fas fa-times'>Edit</i>
-                                </MDBBtn>
-                                <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowDelete}>
-                                    <i className='fas fa-times'>Delete</i>
-                                </MDBBtn>
-                            </td>
+                            <td>{contact.plan}</td>
+
                         </tr>
                     </MDBTableBody>
                 ))}
             </MDBTable>
 
-            <form onSubmit={(e) => submitUpd(e)} id="form" >
-                <MDBModal tabIndex='-1' show={editModal} setShow={setCentredModal}>
-                    <MDBModalDialog centered>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle>Edit data</MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={toggleShowEdit}></MDBBtn>
-                            </MDBModalHeader>
+
+            <MDBModal tabIndex='-1' className='modal' show={editModal} setShow={setCentredModal}>
+                <MDBModalDialog centered>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle>Edit data</MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={toggleShowEdit}></MDBBtn>
+                        </MDBModalHeader>
+                        <form onSubmit={(e) => submitUpd(e)} >
                             <MDBModalBody>
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">First name</label>
@@ -138,59 +142,68 @@ function Views() {
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">Last Name
                                         <span class="text-muted"></span></label>
-                                    <input type="text" className="form-control"  onChange={(e) => handle(e)} value={data.lastName} id="lastName" required />
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.lastName} id="lastName" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email
                                         <span class="text-muted"></span></label>
-                                    <input type="email" className="form-control"  onChange={(e) => handle(e)} value={data.email} id="email" required />
+                                    <input type="email" className="form-control" onChange={(e) => handle(e)} value={data.email} id="email" placeholder={contacts.email} required />
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="_id" class="form-label"></label>
-                                    <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control" name="_id" placeholder="Please re-enter the ID to confirm" value={data._id} required />
+                                    <label for="_id" class="form-label">Select the correct ID to edit</label>
+                                    <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control" name="_id" placeholder="Please re-enter the ID to confirm" value={data._id} required>
+                                        <option value="">Choose ...</option>
+                                        {contacts.map((contact) => (
+                                            <option>{contact._id}</option>
+                                        ))}
+                                    </Form.Select>
                                 </div>
-
                             </MDBModalBody>
                             <MDBModalFooter>
-                                <MDBBtn color='danger' onClick={toggleShowEdit}>
+                                {/*<button className='btn btn-danger' data-bs-dismiss="modal">
                                     Cancel
-                                </MDBBtn>
+                                </button> */}
                                 <MDBBtn color='success' type='submit' onClick={toggleShowEdit}>
                                     Update
                                 </MDBBtn>
                             </MDBModalFooter>
-                        </MDBModalContent>
-                    </MDBModalDialog>
-                </MDBModal>
-            </form>
+                        </form>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
 
-            <form onSubmit={(e) => submitDel(e)}>
-                <MDBModal tabIndex='-1' show={deleteModal} setShow={setCentredModal1}>
-                    <MDBModalDialog centered>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle>
-                                    <h5>Delete data</h5>
-                                </MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={toggleShowDelete}></MDBBtn>
-                            </MDBModalHeader>
+
+            <MDBModal tabIndex='-1' show={deleteModal} setShow={setCentredModal1}>
+                <MDBModalDialog centered>
+                    <MDBModalContent>
+                        <MDBModalHeader>
+                            <MDBModalTitle>
+                                <h5>Delete data</h5>
+                            </MDBModalTitle>
+                            <MDBBtn className='btn-close' color='none' onClick={toggleShowDelete}></MDBBtn>
+                        </MDBModalHeader>
+                        <form onSubmit={(e) => submitDel(e)}>
                             <MDBModalBody>
-                                <strong>Are you sure to delete?</strong>
+                                <strong>Please select the ID to remove</strong>
                                 <hr />
                                 <div class="mb-3">
-                                    <label for="_id" class="form-label">Please re-enter the ID to remove</label>
-                                    <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control" name="_id" value={data._id} required />
+                                    <label for="_id" class="form-label">Are you sure to delete?</label>
+                                    <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={data._id} required >
+                                        <option value="">Choose ...</option>
+                                        {contacts.map((contact) => (
+                                            <option>{contact._id}</option>
+                                        ))}
+                                    </Form.Select>
                                 </div>
                             </MDBModalBody>
                             <MDBModalFooter>
                                 <MDBBtn color='danger' type='submit' onClick={toggleShowDelete}>Delete</MDBBtn>
                             </MDBModalFooter>
-                        </MDBModalContent>
-                    </MDBModalDialog>
-                </MDBModal>
-            </form> 
-
+                        </form>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
         </Container >
     );
 }
