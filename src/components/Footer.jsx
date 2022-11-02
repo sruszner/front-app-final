@@ -1,4 +1,5 @@
 import Nav from 'react-bootstrap/Nav';
+import Axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import {
@@ -17,16 +18,42 @@ function Footer() {
     const [subscribedModal, setCentredModal0] = useState(false);
     const toggleShowSubscribed = () => setCentredModal0(!subscribedModal);
 
+    const URL = "https://back-app-final.herokuapp.com/subscribed";
+
+/* 
+    const URL = "http://localhost:9000/subscribed"; */
+
+    const [data, setData] = useState({
+        email: ""
+    })
 
     function submit(e) {
         e.preventDefault();
-        toggleShowSubscribed();
+        Axios.post(URL, {
+            email: data.email
+        })
+            .then(res => {
+                toggleShowSubscribed();
+                console.log(res.data);
+            })
     }
+
+
+    function handle(e) {
+        const newdata = { ...data };
+        newdata[e.target.id] = e.target.value;
+        setData(newdata);
+        console.log(newdata);
+    }
+
+/*     function submit(e) {
+        e.preventDefault();
+        toggleShowSubscribed();
+    } */
 
     function close(e) {
         window.location.reload();
     }
-
 
     return (
         <footer class="container-lg py-5">
@@ -74,7 +101,7 @@ function Footer() {
                         <p>Monthly digest of whats new and exciting from us.</p>
                             <form onSubmit={(e) => submit(e)} className="d-flex w-100 gap-2">
                                 <label htmlFor="email" className="visually_hidden">Email address</label>
-                                <input  type="email" id="email" name="email" className="form-control" placeholder="Email address" required />
+                                <input onChange={(e) => handle(e)}  type="email" id="email" name="email" className="form-control" placeholder="Email address" value={data.email} required />
                                 <MDBBtn type='submit' value='Subscribe' tag='input' size='sm' color='danger' className=""/>
                             </form>
                     </div>

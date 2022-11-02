@@ -22,7 +22,11 @@ function Views() {
     const title = "TABLE"
     const URLget = "https://back-app-final.herokuapp.com/";
     const URLdel = "https://back-app-final.herokuapp.com/delete";
-    const URLup = "https://back-app-final.herokuapp.com/update";
+    const URLup = "https://back-app-final.herokuapp.com/update"; 
+
+/*     const URLget = "http://localhost:9000/";
+    const URLdel = "http://localhost:9000/delete";
+    const URLup = "http://localhost:9000/update"; */
 
     const [editModal, setCentredModal] = useState(false);
     const toggleShowEdit = () => {

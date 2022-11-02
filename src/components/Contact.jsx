@@ -4,7 +4,8 @@ import Axios from 'axios';
 
 function Contact() {
 
-    const URL = "https://back-app-final.herokuapp.com/create";
+const URL = "https://back-app-final.herokuapp.com/create";
+/*     const URL = "http://localhost:9000/create"; */
 
     const [data, setData] = useState({
         firstName: "",
