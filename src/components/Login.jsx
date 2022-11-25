@@ -8,7 +8,7 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function Login() {
 
-    const LOGIN_URL = '/auth';
+    const LOGIN_URL = 'https://back-app-final-production.up.railway.app/auth';
     const { setAuth } = useAuth();
     const userRef = useRef();
     const errRef = useRef();

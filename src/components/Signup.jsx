@@ -7,8 +7,8 @@ import useAuth from '../hooks/useAuth';
 
 function Signup() {
 
-    /* const URL = "https://back-app-final.herokuapp.com/register"; */
-    const URLsingUp = "http://localhost:9000/register";
+    const URLsingUp = "https://back-app-final-production.up.railway.app/register";
+/*     const URLsingUp = "http://localhost:9000/register"; */
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();

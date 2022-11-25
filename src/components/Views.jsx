@@ -28,16 +28,16 @@ function Views() {
     const location = useLocation();
     const { setAuth } = useContext(AuthContext);
 
-    /*  const URLget = "https://back-app-final.herokuapp.com/";
-        const URLdel = "https://back-app-final.herokuapp.com/delete";
-        const URLup = "https://back-app-final.herokuapp.com/update";  
-    */
-
+    const URLget = "https://back-app-final-production.up.railway.app/";
+    const URLdel = "https://back-app-final-production.up.railway.app/delete";
+    const URLup = "https://back-app-final-production.up.railway.app/update";
+    const URLlogout = "https://back-app-final-production.up.railway.app/logout";
+/* 
     const URLget = "http://localhost:9000/";
     const URLdel = "http://localhost:9000/delete";
     const URLup = "http://localhost:9000/update";
     const URLlogout = "http://localhost:9000/logout";
-
+ */
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -145,7 +145,7 @@ function Views() {
                             <th scope="col"> Name </th>
                             <th scope="col"> Surname </th>
                             <th scope="col"> Email </th>
-{/*                         <th scope="col"> Country </th> */}
+                            {/*                         <th scope="col"> Country </th> */}
                             <th scope="col"> Message </th>
                             <th scope="col">Plan</th>
                         </tr>
@@ -165,7 +165,7 @@ function Views() {
                                 <td>
                                     <option>{contact.email}</option>
                                 </td>
-{/*                             <td>
+                                {/*                             <td>
                                     <option>{contact.country}</option>
                                 </td> */}
                                 <td>
@@ -213,9 +213,9 @@ function Views() {
                                         <label htmlFor="_id" className="form-label">Select the correct ID to edit</label>
                                         <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control" name="_id" placeholder="Please re-enter the ID to confirm" value={data._id} required>
                                             <option value="">Choose ...</option>
-                                        {contacts.map((contact) => (
-                                            <option>{contact._id}</option>
-                                        ))}
+                                            {contacts.map((contact) => (
+                                                <option>{contact._id}</option>
+                                            ))}
                                         </Form.Select>
                                     </div>
                                 </MDBModalBody>
@@ -247,9 +247,9 @@ function Views() {
                                         <label htmlFor="_id" className="form-label">Are you sure to delete?</label>
                                         <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={data._id} required >
                                             <option value="">Choose ...</option>
-                                        {contacts.map((contact) => (
-                                            <option>{contact._id}</option>
-                                        ))} 
+                                            {contacts.map((contact) => (
+                                                <option>{contact._id}</option>
+                                            ))}
                                         </Form.Select>
                                     </div>
                                 </MDBModalBody>
