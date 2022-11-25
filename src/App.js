@@ -10,7 +10,16 @@ import Gt3 from './components/Gt3'
 import Lmp1 from './components/Lmp1'
 import ErrorPage from './components/ErrorPage'
 import Views from './components/Views'
+import Login from './components/Login'
+import Signup from './components/Signup'
+import Forgot from './components/Forgot'
 
+
+const ROLES = {
+  'User': 2001,
+  'Editor': 1984,
+  'Admin': 5150
+}
 
 function App() {
   return (
@@ -26,10 +35,13 @@ function App() {
         <Route path="404error" element={<ErrorPage />} />
         <Route path="region" element={<Region />} />
         <Route path="views" element={<Views />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="forgot" element={<Forgot />} />
       </Routes>
       <Footer />
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossOrigin="anonymous"></script>
     </div>
   );
 }

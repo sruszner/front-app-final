@@ -18,10 +18,10 @@ function Footer() {
     const [subscribedModal, setCentredModal0] = useState(false);
     const toggleShowSubscribed = () => setCentredModal0(!subscribedModal);
 
-    const URL = "https://back-app-final.herokuapp.com/subscribed";
+/*  const URL = "https://back-app-final.herokuapp.com/subscribed"; */
 
-/* 
-    const URL = "http://localhost:9000/subscribed"; */
+
+    const URL = "http://localhost:9000/subscribed";
 
     const [data, setData] = useState({
         email: ""
@@ -56,7 +56,7 @@ function Footer() {
     }
 
     return (
-        <footer class="container-lg py-5">
+        <footer className="container-lg py-5">
             <div className="row">
                 <div className="col-2">
                     <h5>Section</h5>
@@ -69,9 +69,9 @@ function Footer() {
                     </ul>
                 </div>
 
-                <div class="col-2">
+                <div className="col-2">
                     <h5>Us</h5>
-                    <ul class="nav flex-column">
+                    <ul className="nav flex-column">
                         <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Accommodation</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error"  target="_top" className="nav-link p-0 text-muted">Driving experience</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error"  target="_top" className="nav-link p-0 text-muted">Restaurants</Nav.Link>
@@ -82,10 +82,10 @@ function Footer() {
                     </ul>
                 </div>
 
-                <div class="col-2">
+                <div className="col-2">
                     <h5>More</h5>
-                    <ul class="nav flex-column">
-                        <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Login</Nav.Link></li>
+                    <ul className="nav flex-column">
+                        <li className="nav-item mb-2"><Nav.Link href="/login" target="_top" className="nav-link p-0 text-muted">Login</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error"  target="_top" className="nav-link p-0 text-muted">Guided tour</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error"  target="_top" className="nav-link p-0 text-muted">View</Nav.Link>
                         </li>
@@ -147,7 +147,7 @@ function Footer() {
                             <MDBBtn className='btn-close' color='none' onClick={(e) => close(e)}></MDBBtn>
                         </MDBModalHeader>
                         <MDBModalBody>
-                            <div class="modal-body text-success">
+                            <div className="modal-body text-success">
                                 <h4>Thank you for subscribing!</h4>
                             </div>
                         </MDBModalBody>

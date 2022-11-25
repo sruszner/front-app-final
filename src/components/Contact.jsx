@@ -4,8 +4,8 @@ import Axios from 'axios';
 
 function Contact() {
 
-const URL = "https://back-app-final.herokuapp.com/create";
-/*     const URL = "http://localhost:9000/create"; */
+/* const URL = "https://back-app-final.herokuapp.com/create"; */
+    const URL = "http://localhost:9000/create";
 
     const [data, setData] = useState({
         firstName: "",
@@ -62,10 +62,10 @@ const URL = "https://back-app-final.herokuapp.com/create";
             <div className="row g-5">
                 <div className="col-md-7 col-lg-8 container-lg">
                     <h4 className="mb-3">Contact form</h4>
-                    <form onSubmit={(e) => submit(e)} className="needs-validation" id="form" novalidate>
+                    <form onSubmit={(e) => submit(e)} className="needs-validation" id="form" formNoValidate  >
                         <div className="row g-3">
                             <div className="col-sm-6">
-                                <label for="firstName" className="form-label">First name</label>
+                                <label htmlFor="firstName" className="form-label">First name</label>
                                 <input onChange={(e) => handle(e)} id="firstName" type="text" className="form-control" name="firstName" placeholder="" value={data.firstName} required />
                                 <div className="invalid-feedback">
                                     Valid first name is required.
@@ -73,7 +73,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-sm-6">
-                                <label for="lastName" className="form-label">Last name</label>
+                                <label htmlFor="lastName" className="form-label">Last name</label>
                                 <input onChange={(e) => handle(e)} id="lastName" type="text" className="form-control" name="lastName" placeholder="" value={data.lastName} required />
                                 <div className="invalid-feedback">
                                     Valid last name is required.
@@ -81,11 +81,11 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-12">
-                                <label for="username" className="form-label">Username</label>
+                                <label htmlFor="username" className="form-label">User</label>
                                 <span className="text-muted"></span>
                                 <div className="input-group has-validation">
                                     <span className="input-group-text">@</span>
-                                    <input type="text" onChange={(e) => handle(e)} id="username" className="form-control" name="username" placeholder="Username" value={data.username} required />
+                                    <input type="text" onChange={(e) => handle(e)} id="username" className="form-control" name="username" placeholder="User" value={data.username} required />
                                     <div className="invalid-feedback">
                                         Your username is required.
                                     </div>
@@ -93,7 +93,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-12">
-                                <label for="email" className="form-label">Email
+                                <label htmlFor="email" className="form-label">Email
                                     <span className="text-muted"></span></label>
                                 <input type="email" onChange={(e) => handle(e)} id="email" className="form-control" name="email" placeholder="you@example.com" value={data.email} required />
                                 <div className="invalid-feedback">
@@ -102,7 +102,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-12">
-                                <label for="address" className="form-label">Address</label>
+                                <label htmlFor="address" className="form-label">Address</label>
                                 <input type="text" onChange={(e) => handle(e)} id="address" className="form-control" name="address" placeholder="1234 Main St" value={data.address} required />
                                 <div className="invalid-feedback">
                                     Please enter your address.
@@ -110,13 +110,13 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-12">
-                                <label for="address2" className="form-label">Address 2
+                                <label htmlFor="address2" className="form-label">Address 2
                                     <span className="text-muted">(Optional)</span></label>
                                 <input type="text" id="address2" className="form-control" name="address2" placeholder="Apartment or suite" />
                             </div>
 
                             <div className="col-md-5">
-                                <label for="country" className="form-label">Country</label>
+                                <label htmlFor="country" className="form-label">Country</label>
                                 <Form.Select className="form-select" onChange={(e) => handle(e)} id="country" name="country" value={data.country} required>
                                     <option value="">Choose...</option>
                                     <option>Argentina</option>
@@ -131,7 +131,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-md-4">
-                                <label for="state" className="form-label">State</label>
+                                <label htmlFor="state" className="form-label">State</label>
                                 <Form.Select className="form-select" name="state" required>
                                     <option value="">Choose...</option>
                                     <option>Buenos Aires</option>
@@ -146,7 +146,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                             </div>
 
                             <div className="col-md-3">
-                                <label for="zip" className="form-label">Zip</label>
+                                <label htmlFor="zip" className="form-label">Zip</label>
                                 <input type="number" onChange={(e) => handle(e)} id="zip" className="form-control" value={data.zip} name="zip" placeholder="" required />
                                 <div className="invalid-feedback">
                                     Zip code required.
@@ -155,7 +155,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
 
 
                             <div className="col-md-5">
-                                <label for="plan" className="form-label">Plan</label>
+                                <label htmlFor="plan" className="form-label">Plan</label>
                                 <Form.Select className="form-select" onChange={(e) => handle(e)} id="plan" value={data.plan} name="plan" required>
                                     <option value="">Choose...</option>
                                     <option value="Free">Free</option>
@@ -172,7 +172,7 @@ const URL = "https://back-app-final.herokuapp.com/create";
                         </div>
 
                         <div className="col-12 p-4">
-                            <label for="message" className="form-label">Message</label>
+                            <label htmlFor="message" className="form-label">Message</label>
                             <textarea className="form-control" onChange={(e) => handle(e)} name="message" value={data.message} id="message" placeholder="Your message" rows="6"
                                 required></textarea>
                             <div className="invalid-feedback">
@@ -183,22 +183,22 @@ const URL = "https://back-app-final.herokuapp.com/create";
                         <hr className="my-4" />
 
                         <div className="form-check visually-hidden">
-                            <input type="checkbox" className="form-check-input" name="dataStorage" value="Yes" checked />
-                            <label className="form-check-label" for="dataStorage">I agree to the
+                            <input type="checkbox" className="form-check-input" name="dataStorage" value="Yes"  />
+                            <label className="form-check-label" htmlFor="dataStorage">I agree to the
                                 storage of my data
                             </label>
                         </div>
 
                         <div className="form-check visually-hidden">
-                            <input type="checkbox" className="form-check-input" name="beContacted" value="Yes" checked />
-                            <label className="form-check-label" for="beContacted">I agree to be
+                            <input type="checkbox" className="form-check-input" name="beContacted" value="Yes"  />
+                            <label className="form-check-label" htmlFor="beContacted">I agree to be
                                 contacted for news or promotions.</label>
                         </div>
 
                         <h4 className="mb-3">Where you met us?</h4>
 
                         <div className="my-3">
-                            <div class="form-check">
+                            <div className="form-check">
                                 <input id="metOn" name="metOn" onChange={(e) => handle(e)} value="TV" type="radio" className="form-check-input"  required />
                                 <label htmlFor="tv" className="form-check-label">TV      </label>
                             </div>

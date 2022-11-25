@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 function Navigation() {
     return (
@@ -23,6 +24,14 @@ function Navigation() {
                         <Nav.Link href="/views">View Table</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
                     </Nav>
+                    <div className="">
+                    {/* <Nav.Link href="/login">
+                            <MDBBtn color='danger' size='sm' className="m-1">
+                                Login
+                            </MDBBtn>
+                        </Nav.Link> 
+                        */}
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

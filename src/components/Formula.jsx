@@ -31,22 +31,22 @@ function Formula() {
                 />
             </MDBCarousel>
 
-            <div class="container marketing">
-                <hr class="featurette-divider" />
-                <div class="row featurette">
-                    <div class="col-md-5">
+            <div className="container marketing">
+                <hr className="featurette-divider" />
+                <div className="row featurette">
+                    <div className="col-md-5">
                         <Nav.Link href="" target="_blank" rel="noopener noreferrer">
                         </Nav.Link>
                     </div>
                 </div>
 
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">
+                <div className="row featurette">
+                    <div className="col-md-7">
+                        <h2 className="featurette-heading">
                             2021 Belgium GP Cancelled
-                            <span class="text-muted">Only rain wins</span>
+                            <span className="text-muted">Only rain wins</span>
                         </h2>
-                        <p class="lead">
+                        <p className="lead">
                             It was midday when it started to rain heavily in the Ardennes and it was not going to stop. At 14:20
                             the cars came out of the garage for warm-up laps. Sergio Pérez crashed his Red Bull at Les Combes
                             and broke the wing and front suspension. He had originally dropped out. With the grid formed, F1
@@ -55,25 +55,25 @@ function Formula() {
                             rejoin because his mechanics were able to repair the damage. But there was little point in rushing.
                         </p>
                     </div>
-                    <div class="col-md-5">
+                    <div className="col-md-5">
                         <Link to="/404error" target="_blank" rel="noopener noreferrer">
                             <img src="../assets/media/f1spanote1.jpg" alt=""
-                                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
+                                className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
                                 height="700" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice"
                                 focusable="false" />
                         </Link>
                     </div>
                 </div>
 
-                <hr class="featurette-divider" />
+                <hr className="featurette-divider" />
 
-                <div class="row featurette">
-                    <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading">
+                <div className="row featurette">
+                    <div className="col-md-7 order-md-2">
+                        <h2 className="featurette-heading">
                             2020 Belgium GP
-                            <span class="text-muted"> summary and result of the race</span>
+                            <span className="text-muted"> summary and result of the race</span>
                         </h2>
-                        <p class="lead">
+                        <p className="lead">
                             VICTORY FOR LEWIS HAMILTON! The Briton was unchallenged and led from start to finish despite
                             suffering with tyre problems in the closing stages of the race. He is two wins away from beating
                             Schumacher's World Championship record, with Bottas and Verstappen completing the podium. Another
@@ -83,25 +83,25 @@ function Formula() {
                             protagonists, the race was neutralised for four laps.
                         </p>
                     </div>
-                    <div class="col-md-5 order-md-1">
+                    <div className="col-md-5 order-md-1">
                         <Link to="/404error" target="_blank" rel="noopener noreferrer">
                             <img src="../assets/media/f1spanote2.jpg" alt=""
-                                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
+                                className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
                                 height="700" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice"
                                 focusable="false" />
                         </Link>
                     </div>
                 </div>
 
-                <hr class="featurette-divider" />
+                <hr className="featurette-divider" />
 
-                <div class="row featurette">
-                    <div class="col-md-7">
-                        <h2 class="featurette-heading">
+                <div className="row featurette">
+                    <div className="col-md-7">
+                        <h2 className="featurette-heading">
                             2019 Belgium GP
-                            <span class="text-muted"> Ferrari at podium</span>
+                            <span className="text-muted"> Ferrari at podium</span>
                         </h2>
-                        <p class="lead">
+                        <p className="lead">
                             Charles Leclerc claimed the first Formula 1 victory of his career and Ferrari’s first in the 2019
                             campaign in the Belgium Grand Prix at Spa-Francorchamps, less than 24 hours after his friend
                             Anthoine Hubert passed away after a crash in Saturday’s F2 feature race.
@@ -112,16 +112,16 @@ function Formula() {
                             Vettel during the pit stops, Ferrari instructed Vettel to move aside for the flying polesitter.
                         </p>
                     </div>
-                    <div class="col-md-5">
+                    <div className="col-md-5">
                         <Link to="/404error"  target="_blank" rel="noopener noreferrer">
                             <img src="../assets/media/f1spanote3.jpg" alt=""
-                                class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
+                                className="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="700"
                                 height="700" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice"
                                 focusable="false" />
                         </Link>
                     </div>
                 </div>
-                <hr class="featurette-divider" />
+                <hr className="featurette-divider" />
             </div>
         </Container>
     );
