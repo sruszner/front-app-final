@@ -21,13 +21,12 @@ import './boton.css';
 
 
 function Views() {
-    const [contacts, setContacts] = useState([]);
     const title = "TABLE"
+    const [contacts, setContacts] = useState([]);
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
     const { setAuth } = useContext(AuthContext);
-
 
     /*  const URLget = "https://back-app-final.herokuapp.com/";
         const URLdel = "https://back-app-final.herokuapp.com/delete";
@@ -221,9 +220,6 @@ function Views() {
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
-                                    {/*                                 <button className='btn btn-danger'onClick={(e) => close(e)} >
-                                    Cancel
-                                </button> */}
                                     <MDBBtn color='success' type='submit' onClick={toggleShowEdit}>
                                         Update
                                     </MDBBtn>

@@ -1,6 +1,70 @@
 import Nav from 'react-bootstrap/Nav';
+import React, { useRef, useState, useEffect } from 'react';
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useNavigate, useLocation } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
+
 
 function Signup() {
+
+    /* const URL = "https://back-app-final.herokuapp.com/register"; */
+    const URLsingUp = "http://localhost:9000/register";
+    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { setAuth } = useAuth();
+    const userRef = useRef();
+    const errRef = useRef();
+    const [user, setUser] = useState('');
+    const [pwd, setPwd] = useState('');
+    const from = location.state?.from?.pathname || "/login";
+    const [errMsg, setErrMsg] = useState('');
+    const [data, setData] = useState({
+        user: "",
+        pwd: ""
+    })
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user, pwd])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axiosPrivate.post(URLsingUp,
+                JSON.stringify({ user, pwd }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    withCredentials: true
+                }
+            );
+            setAuth({ user, pwd });
+            console.log(`User ${user} created!`);
+            navigate(from, { replace: true });
+
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No server response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing User or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else if (err.response?.status === 409) {
+                setErrMsg('User already exists');
+            } else {
+                setErrMsg('Login Failed');
+            }
+            errRef.current.focus();
+        }
+    }
+
     return (
         <section className="h-100">
             <div className="container h-100">
@@ -12,27 +76,19 @@ function Signup() {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
-                                <form method="POST" className="needs-validation" novalidate="" autocomplete="off">
+                                <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                                <form onSubmit={(e) => handleSubmit(e)} className="needs-validation" noValidate="" autoComplete="off">
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="email">Email Address</label>
-                                        <input id="email" type="email" className="form-control" name="email" required
-                                            autofocus />
+                                        <label className="mb-2 text-muted" htmlFor="user">User</label>
+                                        <input id="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)}  type="text" className="form-control" name="user" required autoFocus />
                                         <div className="invalid-feedback">
-                                            Email is invalid
+                                            User is invalid
                                         </div>
                                     </div>
 
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="firstName">Name</label>
-                                        <input id="firstName" type="text" className="form-control" name="firstName" required />
-                                        <div className="invalid-feedback">
-                                            Name is required
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="pass">Password</label>
-                                        <input id="pass" type="password" className="form-control" name="pass" required />
+                                        <label className="mb-2 text-muted" htmlFor="pwd">Password</label>
+                                        <input id="pwd" value={pwd} onChange={(e) => setPwd(e.target.value)} type="password" className="form-control" name="pwd" required />
                                         <div className="invalid-feedback">
                                             Password is required
                                         </div>
@@ -43,7 +99,7 @@ function Signup() {
                                     </p>
 
                                     <div className="align-items-center d-flex">
-                                        <button type="button" className="btn btn-success ms-auto">
+                                        <button type="submit" className="btn btn-success ms-auto">
                                             Register
                                         </button>
                                     </div>
@@ -59,8 +115,6 @@ function Signup() {
                 </div>
             </div>
         </section>
-
-
     );
 }
 
