@@ -32,12 +32,12 @@ function Views() {
     const URLdel = "https://back-app-final-production.up.railway.app/delete";
     const URLup = "https://back-app-final-production.up.railway.app/update";
     const URLlogout = "https://back-app-final-production.up.railway.app/logout";
-/* 
-    const URLget = "http://localhost:9000/";
-    const URLdel = "http://localhost:9000/delete";
-    const URLup = "http://localhost:9000/update";
-    const URLlogout = "http://localhost:9000/logout";
- */
+    /* 
+        const URLget = "http://localhost:9000/";
+        const URLdel = "http://localhost:9000/delete";
+        const URLup = "http://localhost:9000/update";
+        const URLlogout = "http://localhost:9000/logout";
+     */
 
 
     useEffect(() => {
@@ -48,6 +48,9 @@ function Views() {
             try {
                 const response = await axiosPrivate.get(URLget, {
                     headers: {
+                        'Access-Control-Allow-Credentials': "true",
+                        'Access-Control-Allow-Methods': "GET,HEAD,OPTIONS,POST,PUT",
+                        'Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization",
                         'Content-Type': 'application/json charset=utf-8'
                     },
                     withCredentials: true,
