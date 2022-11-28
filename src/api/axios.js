@@ -9,9 +9,9 @@ export default axios.create({
 export const axiosPrivate = axios.create({
     baseURL: BASE_URL,
     headers: { 
-        'Access-Control-Allow-Origin': '*',
+/*         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, DELETE',
-        'Access-Control-Allow-Credentials' : true,
+        'Access-Control-Allow-Credentials' : true, */
         'Content-Type': 'application/json' 
     },
     withCredentials: true
