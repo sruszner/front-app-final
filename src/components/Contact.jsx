@@ -4,8 +4,8 @@ import Axios from 'axios';
 
 function Contact() {
 
-    const URL = "https://back-app-final-production.up.railway.app/create";
-/*  const URL = "http://localhost:9000/create"; */
+    const URL2 = "https://back-app-final-production.up.railway.app/create";
+    const URL = "http://localhost:9000/create";
 
     const [data, setData] = useState({
         firstName: "",

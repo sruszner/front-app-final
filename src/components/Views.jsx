@@ -38,6 +38,8 @@ function Views() {
     const URLup = "http://localhost:9000/update";
     const URLlogout = "http://localhost:9000/logout";
  */
+
+    
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -45,6 +47,11 @@ function Views() {
         const getUsers = async () => {
             try {
                 const response = await axiosPrivate.get(URLget, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json'
+                    },
+                    withCredentials: true,
                     signal: controller.signal
                 });
                 isMounted && setContacts(response.data.contact);
@@ -96,6 +103,8 @@ function Views() {
     function submitUpd(e) {
         e.preventDefault();
         axiosPrivate.post(URLup, {
+
+
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,

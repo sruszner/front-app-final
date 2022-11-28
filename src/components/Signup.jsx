@@ -8,7 +8,7 @@ import useAuth from '../hooks/useAuth';
 function Signup() {
 
     const URLsingUp = "https://back-app-final-production.up.railway.app/register";
-/*     const URLsingUp = "http://localhost:9000/register"; */
+    /* const URLsingUp = "http://localhost:9000/register"; */
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -19,10 +19,7 @@ function Signup() {
     const [pwd, setPwd] = useState('');
     const from = location.state?.from?.pathname || "/login";
     const [errMsg, setErrMsg] = useState('');
-    const [data, setData] = useState({
-        user: "",
-        pwd: ""
-    })
+
 
     useEffect(() => {
         userRef.current.focus();

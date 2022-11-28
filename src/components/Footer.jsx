@@ -19,9 +19,9 @@ function Footer() {
     const toggleShowSubscribed = () => setCentredModal0(!subscribedModal);
 
     const URL = "https://back-app-final-production.up.railway.app/subscribed";
-
-/* const URL = "http://localhost:9000/subscribed"; */
-
+/* 
+    const URL = "http://localhost:9000/subscribed";
+ */
     const [data, setData] = useState({
         email: ""
     })
