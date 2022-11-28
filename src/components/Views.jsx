@@ -39,7 +39,7 @@ function Views() {
     const URLlogout = "http://localhost:9000/logout";
  */
 
-    
+
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -49,6 +49,8 @@ function Views() {
                 const response = await axiosPrivate.get(URLget, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, DELETE',
+                        'Access-Control-Allow-Credentials' : true,
                         'Content-Type': 'application/json'
                     },
                     withCredentials: true,
