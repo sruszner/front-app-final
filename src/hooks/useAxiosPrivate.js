@@ -28,13 +28,7 @@ const useAxiosPrivate = () => {
                     /*                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`; */
                     return axiosPrivate({
                         ...prevRequest,
-                        headers: {
-                            ...prevRequest.headers,
-                            Authorization: `Bearer ${newAccessToken}`,
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, DELETE',
-                            'Access-Control-Allow-Credentials': true,
-                        },
+                        headers: { ...prevRequest.headers, Authorization: `Bearer ${newAccessToken}` },
                     });
                 }
                 return Promise.reject(error);

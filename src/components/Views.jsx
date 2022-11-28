@@ -48,10 +48,7 @@ function Views() {
             try {
                 const response = await axiosPrivate.get(URLget, {
                     headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, DELETE',
-                        'Access-Control-Allow-Credentials' : true,
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json charset=utf-8'
                     },
                     withCredentials: true,
                     signal: controller.signal
