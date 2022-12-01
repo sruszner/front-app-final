@@ -14,6 +14,8 @@ export const axiosPrivate = axios.create({
         "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     },
+    AccessControlAllowHeaders: "Origin, X-Requested-With, Content-Type",
+    AccessControlAllowOrigin: "*",
     withCredentials: true,
     sameSite: 'None',
     maxAge: 24 * 60 * 60 * 1000
