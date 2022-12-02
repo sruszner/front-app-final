@@ -92,8 +92,8 @@ function Login() {
                                         <form onSubmit={handleSubmit}  className="needs-validation" formNoValidate autoComplete="none" >
 
                                             <div className="mb-3">
-                                                <label className="mb-2 text-muted" htmlFor="user">User</label>
-                                                <input id="user" type="text" autoComplete="none" className="form-control" name="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)} required />
+                                                <label className="mb-2 text-muted" htmlFor="user">Email</label>
+                                                <input id="user" type="email" autoComplete="none" className="form-control" name="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)} required />
                                             </div>
 
                                             <div className="mb-3">

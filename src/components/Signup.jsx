@@ -76,8 +76,8 @@ function Signup() {
                                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                                 <form onSubmit={(e) => handleSubmit(e)} className="needs-validation" noValidate="" autoComplete="off">
                                     <div className="mb-3">
-                                        <label className="mb-2 text-muted" htmlFor="user">User</label>
-                                        <input id="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)}  type="text" className="form-control" name="user" required autoFocus />
+                                        <label className="mb-2 text-muted" htmlFor="user">Email</label>
+                                        <input id="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)}  type="email" className="form-control" name="user" required autoFocus />
                                         <div className="invalid-feedback">
                                             User is invalid
                                         </div>
