@@ -39,7 +39,6 @@ function Login() {
                 JSON.stringify({ user, pwd }),
                 {
                     headers: {
-                        "Access-Control-Allow-Origin": "*",
                         'Content-Type': 'application/json'
                     },
                     withCredentials: true

@@ -48,10 +48,8 @@ function Views() {
             try {
                 const response = await axiosPrivate.get(URLget, {
                     headers: {
-                        "Access-Control-Allow-Origin": "*",
                         'Content-Type': 'application/json'
                     },
-                    withCredentials: true,
                     signal: controller.signal
                 });
                 isMounted && setContacts(response.data.contact);
