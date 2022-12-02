@@ -28,7 +28,7 @@ function Views() {
     const location = useLocation();
     const { setAuth } = useContext(AuthContext);
 
-    const URLget = "https://back-app-final-production.up.railway.app/";
+    const URLget = "https://back-app-final-production.up.railway.app";
     const URLdel = "https://back-app-final-production.up.railway.app/delete";
     const URLup = "https://back-app-final-production.up.railway.app/update";
     const URLlogout = "https://back-app-final-production.up.railway.app/logout";
