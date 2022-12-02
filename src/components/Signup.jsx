@@ -8,7 +8,7 @@ import useAuth from '../hooks/useAuth';
 function Signup() {
 
     const URLsingUp = "https://back-app-final-production.up.railway.app/register";
-    /* const URLsingUp = "http://localhost:9000/register"; */
+/*     const URLsingUp = "http://localhost:9000/register"; */
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -33,7 +33,7 @@ function Signup() {
         e.preventDefault();
 
         try {
-            const response = await axiosPrivate.post(URLsingUp,
+            await axiosPrivate.post(URLsingUp,
                 JSON.stringify({ user, pwd }),
                 {
                     headers: {
@@ -56,7 +56,7 @@ function Signup() {
             } else if (err.response?.status === 409) {
                 setErrMsg('User already exists');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('Sign Up Failed');
             }
             errRef.current.focus();
         }
