@@ -22,7 +22,7 @@ function Contact() {
 
     function submit(e) {
         e.preventDefault();
-        Axios.post(URL, {
+        Axios.post(URL2, {
             firstName: data.firstName,
             lastName: data.lastName,
             username: data.username,

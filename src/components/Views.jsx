@@ -32,12 +32,11 @@ function Views() {
     const URLdel = "https://back-app-final-production.up.railway.app/delete";
     const URLup = "https://back-app-final-production.up.railway.app/update";
     const URLlogout = "https://back-app-final-production.up.railway.app/logout";
-    /* 
-        const URLget = "http://localhost:9000/";
+
+/*         const URLget = "http://localhost:9000/";
         const URLdel = "http://localhost:9000/delete";
         const URLup = "http://localhost:9000/update";
-        const URLlogout = "http://localhost:9000/logout";
-     */
+        const URLlogout = "http://localhost:9000/logout"; */
 
 
     useEffect(() => {

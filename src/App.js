@@ -13,7 +13,7 @@ import Views from './components/Views'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Forgot from './components/Forgot'
-
+import ResetPass from './components/ResetPass'
 
 const ROLES = {
   'User': 2001,
@@ -38,6 +38,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="forgot" element={<Forgot />} />
+        <Route path="resetpass/:resetToken" element={<ResetPass />} />
       </Routes>
       <Footer />
 

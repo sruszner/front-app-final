@@ -1,36 +1,72 @@
 import Nav from 'react-bootstrap/Nav';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-function Forgot() {
+const ForgotPassword = () => {
+    const URLForgot = "https://back-app-final-production.up.railway.app/forgot";
+/*     const URLForgot = "http://localhost:9000/forgot" */
+    const [data, setData] = useState({
+        email: ""
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios.post(URLForgot, {email: data.email})
+            .then((res) => {
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'success',
+                    text: 'Check your email, we have sent you instructions'
+                })
+            }).catch((err) => {
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'error',
+                    text: 'Error'
+                })
+            });
+    }
+
+    function handle(e) {
+        const newdata = { ...data };
+        newdata[e.target.id] = e.target.value;
+        setData(newdata);
+        console.log(newdata);
+    }
+
+
+
     return (
-        <section class="h-100">
-            <div class="container h-100">
-                <div class="row justify-content-sm-center h-100">
-                    <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-                        <div class="text-center my-5">
+        <section className="h-100">
+            <div className="container h-100">
+                <div className="row justify-content-sm-center h-100">
+                    <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                        <div className="text-center my-5">
                             <img src="../assets/media/favicon.jpg" alt="logo" width="72" height="57" />
                         </div>
-                        <div class="card shadow-lg">
-                            <div class="card-body p-5">
-                                <h1 class="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
-                                <form method="POST" class="needs-validation" novalidate="" autocomplete="off">
-                                    <div class="mb-3">
-                                        <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                        <input id="emailForgot" type="email" class="form-control" name="emailForgot" value="" required autofocus />
-                                        <div class="invalid-feedback">
+                        <div className="card shadow-lg">
+                            <div className="card-body p-5">
+                                <h1 className="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
+                                <form onSubmit={handleSubmit} className="needs-validation" >
+                                    <div className="mb-3">
+                                        <label className="mb-2 text-muted" htmlFor="email">E-Mail Address</label>
+                                        <input id="email" onChange={(e) => handle(e)} type="email" value={data.email} className="form-control" name="email" required />
+                                        <div className="invalid-feedback">
                                             Email is invalid
                                         </div>
                                     </div>
 
-                                    <div class="d-flex align-items-center">
-                                        <button type="submit" class="btn btn-danger ms-auto">
+                                    <div className="d-flex align-items-center">
+                                        <button type="submit" className="btn btn-danger ms-auto">
                                             Send Link
                                         </button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="card-footer py-3 border-0">
-                                <div class="text-center">
-                                    Remember your password? <Nav.Link href="/login" class="text-dark">Login</Nav.Link>
+                            <div className="card-footer py-3 border-0">
+                                <div className="text-center">
+                                    Remember your password? <Nav.Link href="/login" className="text-dark">Login</Nav.Link>
                                 </div>
                             </div>
                         </div>
@@ -41,4 +77,4 @@ function Forgot() {
     );
 }
 
-export default Forgot;
+export default ForgotPassword;
