@@ -3,7 +3,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import Swal from 'sweetalert2';
 
 function Signup() {
 
@@ -17,9 +18,12 @@ function Signup() {
     const errRef = useRef();
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
+    const [isError, setIsError] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [showPassword, setShowPassword] = useState("");
     const from = location.state?.from?.pathname || "/login";
     const [errMsg, setErrMsg] = useState('');
-
+    const [isLoading, setIsLoading] = useState("");
 
     useEffect(() => {
         userRef.current.focus();
@@ -31,6 +35,8 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        setIsLoading(true);
 
         try {
             await axiosPrivate.post(URLsingUp,
@@ -41,7 +47,21 @@ function Signup() {
                     },
                     withCredentials: true
                 }
-            );
+            ).then((res) => {
+                setIsLoading(false)
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'success',
+                    text: 'Pass updated'
+                })
+                navigate('/login')
+            }).catch((err) => {
+                Swal.fire({
+                    showConfirmButton: true,
+                    icon: 'error',
+                    text: 'Error'
+                })
+            });
             setAuth({ user, pwd });
             console.log(`User ${user} created!`);
             navigate(from, { replace: true });
@@ -62,6 +82,23 @@ function Signup() {
         }
     }
 
+    const checkValidation = (e) => {
+        const confirmPass = e.target.value;
+        setConfirmPassword(confirmPass)
+        if (pwd !== confirmPass) {
+            setIsError("Passwords do not match");
+            setIsLoading(true)
+        } else {
+            setIsError("");
+            setIsLoading(false)
+        }
+    }
+
+    const switchShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
+
+
     return (
         <section className="h-100">
             <div className="container h-100">
@@ -74,31 +111,43 @@ function Signup() {
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Register</h1>
                                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                                <form onSubmit={(e) => handleSubmit(e)} className="needs-validation" noValidate="" autoComplete="off">
+                                <form onSubmit={handleSubmit} className="needs-validation" noValidate="" autoComplete="off">
+
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="user">Email</label>
-                                        <input id="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)}  type="email" className="form-control" name="user" required autoFocus />
-                                        <div className="invalid-feedback">
-                                            User is invalid
-                                        </div>
+                                        <input id="user" value={user} ref={userRef} onChange={(e) => setUser(e.target.value)} type="email" className="form-control" name="user" required autoFocus />
                                     </div>
 
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="pwd">Password</label>
-                                        <input id="pwd" value={pwd} onChange={(e) => setPwd(e.target.value)} type="password" className="form-control" name="pwd" required />
-                                        <div className="invalid-feedback">
-                                            Password is required
-                                        </div>
+                                        <input id="pwd" value={pwd} onChange={(e) => setPwd(e.target.value)} type={showPassword ? "text" : "password"} className="form-control" name="pwd" required />
                                     </div>
+
+                                    <div className="mb-3">
+                                        <label className="mb-2 text-muted" htmlFor="confirmPassword">Repeat password</label>
+                                        <input type={showPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" className="form-control" required />
+                                    </div>
+
+                                    <div className="text-danger ">{isError}</div>
 
                                     <p className="form-text text-muted mb-3">
                                         By registering you agree with our terms and condition.
                                     </p>
 
+                                    <div className="align-items-center d-flex mb-3">
+                                        <i className="ms-auto" onClick={switchShowPassword}>{showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}</i>
+                                    </div>
                                     <div className="align-items-center d-flex">
-                                        <button type="submit" className="btn btn-success ms-auto">
-                                            Register
-                                        </button>
+                                        {isLoading
+                                            ?
+                                            <button type="button" className="btn btn-success ms-auto">
+                                                Register
+                                            </button>
+                                            :
+                                            <button type="submit" className="btn btn-success ms-auto">
+                                                Register
+                                            </button>
+                                        }
                                     </div>
                                 </form>
                             </div>

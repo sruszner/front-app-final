@@ -36,8 +36,8 @@ function Views() {
 /*         const URLget = "http://localhost:9000/";
         const URLdel = "http://localhost:9000/delete";
         const URLup = "http://localhost:9000/update";
-        const URLlogout = "http://localhost:9000/logout"; */
-
+        const URLlogout = "http://localhost:9000/logout";
+ */
 
     useEffect(() => {
         let isMounted = true;

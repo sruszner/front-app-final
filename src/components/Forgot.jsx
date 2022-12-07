@@ -4,7 +4,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const ForgotPassword = () => {
-    const URLForgot = "https://back-app-final-production.up.railway.app/forgot";
+
+    const URLForgot = "https://back-app-final-production.up.railway.app/forgot"; 
 /*     const URLForgot = "http://localhost:9000/forgot" */
     const [data, setData] = useState({
         email: ""
@@ -48,6 +49,7 @@ const ForgotPassword = () => {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
+                                <h6>ruszner.sebastian@gmail.com</h6>
                                 <form onSubmit={handleSubmit} className="needs-validation" >
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="email">E-Mail Address</label>

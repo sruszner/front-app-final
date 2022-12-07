@@ -4,12 +4,13 @@ import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 
 function Login() {
-
-    const LOGIN_URL = 'https://back-app-final-production.up.railway.app/auth';
-/*     const LOGIN_URL = "http://localhost:9000/auth";  */
+    
+        const LOGIN_URL = 'https://back-app-final-production.up.railway.app/auth'; 
+/*     const LOGIN_URL = "http://localhost:9000/auth"; */
 
     const { setAuth } = useAuth();
     const userRef = useRef();
@@ -21,6 +22,7 @@ function Login() {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const [showPassword, setShowPassword] = useState("");
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
@@ -67,6 +69,10 @@ function Login() {
         }
     }
 
+    const switchShowPassword = () => {
+        setShowPassword(!showPassword);
+    }
+
 
     return (
         <>
@@ -89,7 +95,7 @@ function Login() {
                                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">
                                             {errMsg}
                                         </p>
-                                        <form onSubmit={handleSubmit}  className="needs-validation" formNoValidate autoComplete="none" >
+                                        <form onSubmit={handleSubmit} className="needs-validation" formNoValidate autoComplete="none" >
 
                                             <div className="mb-3">
                                                 <label className="mb-2 text-muted" htmlFor="user">Email</label>
@@ -103,17 +109,16 @@ function Login() {
                                                         Forgot Password?
                                                     </a>
                                                 </div>
-                                                <input id="password" type="password" className="form-control" value={pwd} onChange={(e) => setPwd(e.target.value)} name="password" required />
+                                                <input id="password" type={showPassword ? "text" : "password"}  className="form-control" value={pwd} onChange={(e) => setPwd(e.target.value)} name="password" required />
                                                 <div className="invalid-feedback">
                                                     Password is required
                                                 </div>
                                             </div>
 
+                                            <div className="d-flex align-items-center mb-2">
+                                                <i className="ms-auto" onClick={switchShowPassword}>{showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}</i>
+                                            </div>
                                             <div className="d-flex align-items-center">
-                                                <div className="form-check">
-                                                    <input type="checkbox" name="remember" id="remember" className="form-check-input" />
-                                                    <label htmlFor="remember" className="form-check-label">Remember Me</label>
-                                                </div>
                                                 <button type="submit" className="btn btn-danger ms-auto">
                                                     Login
                                                 </button>
