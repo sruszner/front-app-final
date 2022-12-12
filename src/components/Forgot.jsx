@@ -49,7 +49,6 @@ const ForgotPassword = () => {
                         <div className="card shadow-lg">
                             <div className="card-body p-5">
                                 <h1 className="fs-4 card-title fw-bold mb-4">Forgot Password</h1>
-                                <h6>ruszner.sebastian@gmail.com</h6>
                                 <form onSubmit={handleSubmit} className="needs-validation" >
                                     <div className="mb-3">
                                         <label className="mb-2 text-muted" htmlFor="email">E-Mail Address</label>
