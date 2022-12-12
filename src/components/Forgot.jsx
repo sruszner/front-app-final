@@ -1,5 +1,6 @@
 import Nav from 'react-bootstrap/Nav';
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import {
     MDBBtn,
@@ -21,6 +22,9 @@ const ForgotPassword = () => {
     })
     const [forgotModal, setCentredModal0] = useState(false);
     const toggleShowForgot = () => setCentredModal0(!forgotModal);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/login";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,6 +34,7 @@ const ForgotPassword = () => {
             }).catch((err) => {
                 toggleShowForgot();
             })
+            navigate(from, { replace: true });
         }
 
     function handle(e) {
