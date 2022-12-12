@@ -85,7 +85,7 @@ function Footer() {
                     <ul className="nav flex-column">
                         <li className="nav-item mb-2"><Nav.Link href="/login" target="_top" className="nav-link p-0 text-muted">Login</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Guided tour</Nav.Link></li>
-                        <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Admin</Nav.Link>
+                        <li className="nav-item mb-2"><Nav.Link href="/views" target="_top" className="nav-link p-0 text-muted">Admin</Nav.Link>
                         </li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Incentives</Nav.Link>
                         </li>
