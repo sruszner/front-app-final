@@ -34,7 +34,6 @@ const ForgotPassword = () => {
             }).catch((err) => {
                 toggleShowForgot();
             })
-            navigate(from, { replace: true });
         }
 
     function handle(e) {
@@ -46,6 +45,7 @@ const ForgotPassword = () => {
 
     function close(e) {
                     window.location.reload();
+                    navigate(from, { replace: true });
                 }
 
 
