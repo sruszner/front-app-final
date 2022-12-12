@@ -4,7 +4,7 @@ import Axios from 'axios';
 
 function Contact() {
 
-    const URL2 = "https://back-app-final-production.up.railway.app/create";
+    const URL_Prod = "https://back-app-final-production.up.railway.app/create";
     const URL = "http://localhost:9000/create";
 
     const [data, setData] = useState({
@@ -22,7 +22,7 @@ function Contact() {
 
     function submit(e) {
         e.preventDefault();
-        Axios.post(URL2, {
+        Axios.post(URL_Prod, {
             firstName: data.firstName,
             lastName: data.lastName,
             username: data.username,

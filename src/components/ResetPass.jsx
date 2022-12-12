@@ -8,9 +8,9 @@ import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 function ResetPassword() {
 
-    const URLreset = "https://back-app-final-production.up.railway.app/reset"; 
-/*    const URLreset = "http://localhost:9000/reset";
- */
+    const URLreset_Prod = "https://back-app-final-production.up.railway.app/reset"; 
+    const URLreset = "http://localhost:9000/reset";
+
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState("");
     const [isError, setIsError] = useState("");
@@ -30,7 +30,7 @@ function ResetPassword() {
 
         setIsLoading(true);
 
-        await axios.post(URLreset, { params, userPassword }, {
+        await axios.post(URLreset_Prod, { params, userPassword }, {
             where: {
                 resetToken: params
             }

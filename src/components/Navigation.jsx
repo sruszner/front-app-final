@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import {MDBBtn} from 'mdb-react-ui-kit';
 
 function Navigation() {
     return (
@@ -21,16 +21,15 @@ function Navigation() {
                             <NavDropdown.Item href="/gt3">GT3</NavDropdown.Item>
                             <NavDropdown.Item href="/lmp1">LMP1</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="/views">View Table</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
+{/*                     <Nav.Link href="/views">Admin</Nav.Link> */}
                     </Nav>
                     <div className="">
-                    {/* <Nav.Link href="/login">
+                        <Nav.Link href="/views">
                             <MDBBtn color='danger' size='sm' className="m-1">
-                                Login
+                                Admin
                             </MDBBtn>
-                        </Nav.Link> 
-                        */}
+                        </Nav.Link>
                     </div>
                 </Navbar.Collapse>
             </Container>

@@ -9,8 +9,8 @@ import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 function Login() {
     
-        const LOGIN_URL = 'https://back-app-final-production.up.railway.app/auth'; 
-/*     const LOGIN_URL = "http://localhost:9000/auth"; */
+    const LOGIN_URL_Prod = 'https://back-app-final-production.up.railway.app/auth'; 
+    const LOGIN_URL = "http://localhost:9000/auth"; 
 
     const { setAuth } = useAuth();
     const userRef = useRef();
@@ -37,7 +37,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await axiosPrivate.post(LOGIN_URL,
+            const response = await axiosPrivate.post(LOGIN_URL_Prod,
                 JSON.stringify({ user, pwd }),
                 {
                     headers: {

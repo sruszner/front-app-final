@@ -8,8 +8,8 @@ import Swal from 'sweetalert2';
 
 function Signup() {
 
-    const URLsingUp = "https://back-app-final-production.up.railway.app/register";
-/*     const URLsingUp = "http://localhost:9000/register"; */
+    const URLsingUp_Prod = "https://back-app-final-production.up.railway.app/register";
+    const URLsingUp = "http://localhost:9000/register"; 
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -39,7 +39,7 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            await axiosPrivate.post(URLsingUp,
+            await axiosPrivate.post(URLsingUp_Prod,
                 JSON.stringify({ user, pwd }),
                 {
                     headers: {

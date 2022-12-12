@@ -28,16 +28,15 @@ function Views() {
     const location = useLocation();
     const { setAuth } = useContext(AuthContext);
 
-    const URLget = "https://back-app-final-production.up.railway.app";
-    const URLdel = "https://back-app-final-production.up.railway.app/delete";
-    const URLup = "https://back-app-final-production.up.railway.app/update";
-    const URLlogout = "https://back-app-final-production.up.railway.app/logout";
+    const URLget_Prod = "https://back-app-final-production.up.railway.app";
+    const URLdel_Prod = "https://back-app-final-production.up.railway.app/delete";
+    const URLup_Prod = "https://back-app-final-production.up.railway.app/update";
+    const URLlogout_Prod = "https://back-app-final-production.up.railway.app/logout";
 
-/*         const URLget = "http://localhost:9000/";
-        const URLdel = "http://localhost:9000/delete";
-        const URLup = "http://localhost:9000/update";
-        const URLlogout = "http://localhost:9000/logout";
- */
+    const URLget = "http://localhost:9000/";
+    const URLdel = "http://localhost:9000/delete";
+    const URLup = "http://localhost:9000/update";
+    const URLlogout = "http://localhost:9000/logout";
 
     useEffect(() => {
         let isMounted = true;
@@ -45,7 +44,7 @@ function Views() {
 
         const getUsers = async () => {
             try {
-                const response = await axiosPrivate.get(URLget, {
+                const response = await axiosPrivate.get(URLget_Prod, {
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -79,16 +78,16 @@ function Views() {
 
     const [editModal, setCentredModal] = useState(false);
 
-    const toggleShowEdit = () => {
+    const toggleShowEdit = (props) => {
         setCentredModal(!editModal);
     }
 
     const [deleteModal, setCentredModal1] = useState(false);
-    const toggleShowDelete = () => setCentredModal1(!deleteModal);
+    const toggleShowDelete = (_id) => setCentredModal1(!deleteModal);
 
     function submitDel(e) {
         e.preventDefault();
-        axiosPrivate.post(URLdel, {
+        axiosPrivate.post(URLdel_Prod, {
             _id: data._id
         })
             .then(res => {
@@ -99,7 +98,7 @@ function Views() {
 
     function submitUpd(e) {
         e.preventDefault();
-        axiosPrivate.post(URLup, {
+        axiosPrivate.post(URLup_Prod, {
 
 
             firstName: data.firstName,
@@ -114,7 +113,7 @@ function Views() {
     }
 
     const logout = async () => {
-        axiosPrivate.get(URLlogout, setAuth({}), navigate('/login'))
+        axiosPrivate.get(URLlogout_Prod, setAuth({}), navigate('/login'))
     }
 
 
@@ -151,9 +150,9 @@ function Views() {
                             <th scope="col"> Name </th>
                             <th scope="col"> Surname </th>
                             <th scope="col"> Email </th>
-                            {/*                         <th scope="col"> Country </th> */}
                             <th scope="col"> Message </th>
                             <th scope="col">Plan</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </MDBTableHead>
                     {contacts.map((contact) => (
@@ -171,14 +170,19 @@ function Views() {
                                 <td>
                                     <option>{contact.email}</option>
                                 </td>
-                                {/*                             <td>
-                                    <option>{contact.country}</option>
-                                </td> */}
                                 <td>
                                     <option>{contact.message}</option>
                                 </td>
                                 <td>
                                     <option>{contact.plan}</option>
+                                </td>
+                                <td>
+                                        <MDBBtn color='danger' size='sm' className="m-1" data-id={contact._id} onClick={toggleShowEdit}>
+                                            <i className='fas fa-times'>Edit</i>
+                                        </MDBBtn>
+                                        <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowDelete}>
+                                            <i className='fas fa-times'>Delete</i>
+                                        </MDBBtn>
                                 </td>
                             </tr>
                         </MDBTableBody>
@@ -186,7 +190,7 @@ function Views() {
                 </MDBTable>
 
                 <div className="boton m-2 mt-4" >
-                    <MDBBtn onClick={logout} color='danger' size='sm' className="d-block mr-0 ml-auto">
+                    <MDBBtn onClick={logout} color='danger' size='sm' className="d-block ml-auto">
                         <i className='fas fa-times'>Logout</i>
                     </MDBBtn>
                 </div>

@@ -18,8 +18,8 @@ function Footer() {
     const [subscribedModal, setCentredModal0] = useState(false);
     const toggleShowSubscribed = () => setCentredModal0(!subscribedModal);
 
-    const URL = "https://back-app-final-production.up.railway.app/subscribed";
-    /*     const URL = "http://localhost:9000/subscribed"; */
+    const URL_Prod = "https://back-app-final-production.up.railway.app/subscribed";
+    const URL = "http://localhost:9000/subscribed";
 
     const [data, setData] = useState({
         email: ""
@@ -27,7 +27,7 @@ function Footer() {
 
     function submit(e) {
         e.preventDefault();
-        Axios.post(URL, {
+        Axios.post(URL_Prod, {
             email: data.email
         })
             .then(res => {
@@ -85,7 +85,7 @@ function Footer() {
                     <ul className="nav flex-column">
                         <li className="nav-item mb-2"><Nav.Link href="/login" target="_top" className="nav-link p-0 text-muted">Login</Nav.Link></li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Guided tour</Nav.Link></li>
-                        <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">View</Nav.Link>
+                        <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Admin</Nav.Link>
                         </li>
                         <li className="nav-item mb-2"><Nav.Link href="/404error" target="_top" className="nav-link p-0 text-muted">Incentives</Nav.Link>
                         </li>
