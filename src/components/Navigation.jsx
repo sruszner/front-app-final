@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {MDBBtn} from 'mdb-react-ui-kit';
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 function Navigation() {
     return (
@@ -11,6 +11,7 @@ function Navigation() {
                 <Navbar.Brand href="/" className="text-danger">
                     SPA-Francorchamps
                 </Navbar.Brand>
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -22,7 +23,7 @@ function Navigation() {
                             <NavDropdown.Item href="/lmp1">LMP1</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="/contact">Contact</Nav.Link>
-{/*                     <Nav.Link href="/views">Admin</Nav.Link> */}
+                        {/*                     <Nav.Link href="/views">Admin</Nav.Link> */}
                     </Nav>
                     <div className="">
                         <Nav.Link href="/views">

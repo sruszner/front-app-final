@@ -152,7 +152,6 @@ function Views() {
                             <th scope="col"> Email </th>
                             <th scope="col"> Message </th>
                             <th scope="col">Plan</th>
-                            <th scope="col">Actions</th>
                         </tr>
                     </MDBTableHead>
                     {contacts.map((contact) => (
@@ -175,14 +174,6 @@ function Views() {
                                 </td>
                                 <td>
                                     <option>{contact.plan}</option>
-                                </td>
-                                <td>
-                                        <MDBBtn color='danger' size='sm' className="m-1" data-id={contact._id} onClick={toggleShowEdit}>
-                                            <i className='fas fa-times'>Edit</i>
-                                        </MDBBtn>
-                                        <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowDelete}>
-                                            <i className='fas fa-times'>Delete</i>
-                                        </MDBBtn>
                                 </td>
                             </tr>
                         </MDBTableBody>
