@@ -51,7 +51,6 @@ function Views() {
                 });
                 isMounted && setContacts(response.data.contact);
                 console.log(response.data);
-                console.log(contacts);
 
             } catch (err) {
                 console.error(err);
@@ -82,13 +81,18 @@ function Views() {
         lastName: ""
     })
 
+
     const [editModal, setCentredModal] = useState(false);
 
     const toggleShowEdit = (contact) => {
         let newdatosModal = { ...contact };
         setDatosModal(newdatosModal);
-        console.log(newdatosModal);
         setCentredModal(!editModal);
+    }
+
+    const toggleShowEditCancel = () => {
+        setCentredModal(!editModal);
+        window.location.reload()
     }
 
     const [deleteModal, setCentredModal1] = useState(false);
@@ -96,12 +100,17 @@ function Views() {
     const toggleShowDelete = (contact) => {
         let newdatosModal = { ...contact };
         setDatosModal(newdatosModal);
-        console.log(newdatosModal);
         setCentredModal1(!deleteModal);
+    }
+
+    const toggleShowDeleteCancel = () => {
+        setCentredModal1(!deleteModal);
+        window.location.reload()
     }
 
     function submitDel(e) {
         e.preventDefault();
+
         axiosPrivate.post(URLdel_Prod, {
             _id: data._id
         })
@@ -113,6 +122,7 @@ function Views() {
 
     function submitUpd(e) {
         e.preventDefault();
+
         axiosPrivate.post(URLup_Prod, {
             firstName: data.firstName,
             lastName: data.lastName,
@@ -132,13 +142,11 @@ function Views() {
     function handle(e) {
         const newdata = { ...data };
         newdata[e.target.id] = e.target.value;
+        newdata._id = datosModal._id;
         setData(newdata);
         console.log(newdata);
     }
 
-    /*     function close(e) {
-            window.location.reload();
-        } */
 
     return (
         <>
@@ -159,8 +167,8 @@ function Views() {
                             <th scope="col">Actions</th>
                         </tr>
                     </MDBTableHead>
-                    {contacts.map((contact) => (
-                        <MDBTableBody>
+                    {contacts.map((contact, i) => (
+                        <MDBTableBody key={i}>
                             <tr>
                                 <td>
                                     <option>{contact._id}</option>
@@ -208,7 +216,6 @@ function Views() {
                             </MDBModalHeader>
                             <form onSubmit={(e) => submitUpd(e)} >
                                 <MDBModalBody>
-                                    <h4>{ }</h4>
                                     <div className="mb-3">
                                         <label htmlFor="firstName" className="form-label" >First Name</label>
                                         <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.firstName} id="firstName" placeholder={datosModal.firstName} required />
@@ -226,11 +233,12 @@ function Views() {
 
                                     <div className="mb-3">
                                         <label htmlFor="_id" className="form-label">Selected ID to edit</label>
-                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={datosModal._id} placeholder={datosModal._id} disabled />
+                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={data._id} placeholder={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
-                                    <MDBBtn color='success' type='submit' onClick={toggleShowEdit}>
+                                    <MDBBtn color='danger' type='button' onClick={() => toggleShowEditCancel()}>Cancel</MDBBtn>
+                                    <MDBBtn color='success' type='submit' onClick={() => toggleShowEdit(datosModal)}>
                                         Update
                                     </MDBBtn>
                                 </MDBModalFooter>
@@ -253,11 +261,12 @@ function Views() {
                                 <MDBModalBody>
                                     <strong>Are you sure to delete?</strong>
                                     <div className="mt-3 mb-5">
-                                        <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={datosModal._id} placeholder={datosModal._id} disabled />
+                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={data._id} placeholder={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
-                                    <MDBBtn color='danger' type='submit' onClick={toggleShowDelete}>Delete</MDBBtn>
+                                    <MDBBtn color='danger' type='button' onClick={toggleShowDeleteCancel}>Cancel</MDBBtn>
+                                    <MDBBtn color='primary' type='submit' onClick={toggleShowDelete} onMouseOver={(e) => handle(e)}>Delete</MDBBtn>
                                 </MDBModalFooter>
                             </form>
                         </MDBModalContent>
