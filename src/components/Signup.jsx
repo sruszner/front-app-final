@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 function Signup() {
 
     const URLsingUp_Prod = "https://back-app-final-production.up.railway.app/register";
-    const URLsingUp = "http://localhost:9000/register"; 
+    const URLsingUp = "http://localhost:9000/register";
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const location = useLocation();
@@ -33,9 +33,11 @@ function Signup() {
         setErrMsg('');
     }, [user, pwd])
 
+
+    let regExPassword = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
         setIsLoading(true);
 
         try {
@@ -52,7 +54,7 @@ function Signup() {
                 Swal.fire({
                     showConfirmButton: true,
                     icon: 'success',
-                    text: 'Pass updated'
+                    text: 'User created'
                 })
                 navigate('/login')
             }).catch((err) => {
@@ -84,19 +86,33 @@ function Signup() {
 
     const checkValidation = (e) => {
         const confirmPass = e.target.value;
+        const regExConfirm = regExPassword.test(pwd);
         setConfirmPassword(confirmPass)
-        if (pwd !== confirmPass) {
-            setIsError("Passwords do not match");
-            setIsLoading(true)
+
+        console.log(regExConfirm);
+        if (!regExConfirm !== 1) {
+
+            if (pwd !== confirmPass) {
+                setIsError("Passwords do not match");
+                setIsLoading(true);
+            } else {
+                setIsError("");
+                setIsLoading(false);
+            }
         } else {
-            setIsError("");
-            setIsLoading(false)
+            setIsError("Password must contain minimum eight characters, at least one letter and one number");
+            setIsLoading(true) 
         }
     }
 
     const switchShowPassword = () => {
         setShowPassword(!showPassword);
     }
+
+    /* 
+        else if (!regExPassword.test(pwd)) {
+            setIsError("Password must contain minimum eight characters, at least one letter and one number");
+            setIsLoading(true) */
 
 
     return (

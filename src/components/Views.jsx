@@ -76,14 +76,30 @@ function Views() {
         lastName: ""
     })
 
+    const [datosModal, setDatosModal] = useState({
+        _id: "",
+        firstName: "",
+        email: "",
+        lastName: ""
+    })
+
     const [editModal, setCentredModal] = useState(false);
 
-    const toggleShowEdit = (props) => {
+    const toggleShowEdit = (contact) => {
+        let newdatosModal = { ...contact };
+        setDatosModal(newdatosModal);
+        console.log(newdatosModal);
         setCentredModal(!editModal);
     }
 
     const [deleteModal, setCentredModal1] = useState(false);
-    const toggleShowDelete = (_id) => setCentredModal1(!deleteModal);
+
+    const toggleShowDelete = (contact) => {
+        let newdatosModal = { ...contact };
+        setDatosModal(newdatosModal);
+        console.log(newdatosModal);
+        setCentredModal1(!deleteModal);
+    }
 
     function submitDel(e) {
         e.preventDefault();
@@ -99,8 +115,6 @@ function Views() {
     function submitUpd(e) {
         e.preventDefault();
         axiosPrivate.post(URLup_Prod, {
-
-
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
@@ -115,7 +129,6 @@ function Views() {
     const logout = async () => {
         axiosPrivate.get(URLlogout_Prod, setAuth({}), navigate('/login'))
     }
-
 
     function handle(e) {
         const newdata = { ...data };
@@ -134,14 +147,6 @@ function Views() {
                 <hr />
                 <h1 className="text-center"> {title} </h1>
                 <hr />
-                <div className="m-2">
-                    <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowEdit}>
-                        <i className='fas fa-times'>Edit</i>
-                    </MDBBtn>
-                    <MDBBtn color='danger' size='sm' className="m-1" onClick={toggleShowDelete}>
-                        <i className='fas fa-times'>Delete</i>
-                    </MDBBtn>
-                </div>
 
                 <MDBTable striped hover bordered small align="middle" responsive className="text-center text-uppercase">
                     <MDBTableHead dark className="">
@@ -152,6 +157,7 @@ function Views() {
                             <th scope="col"> Email </th>
                             <th scope="col"> Message </th>
                             <th scope="col">Plan</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </MDBTableHead>
                     {contacts.map((contact) => (
@@ -175,6 +181,14 @@ function Views() {
                                 <td>
                                     <option>{contact.plan}</option>
                                 </td>
+                                <td>
+                                    <MDBBtn color='danger' size='sm' className="m-1" onClick={() => toggleShowEdit(contact)}>
+                                        <i className='fas fa-times'>Edit</i>
+                                    </MDBBtn>
+                                    <MDBBtn color='danger' size='sm' className="m-1" onClick={() => toggleShowDelete(contact)}>
+                                        <i className='fas fa-times'>Delete</i>
+                                    </MDBBtn>
+                                </td>
                             </tr>
                         </MDBTableBody>
                     ))}
@@ -195,29 +209,25 @@ function Views() {
                             </MDBModalHeader>
                             <form onSubmit={(e) => submitUpd(e)} >
                                 <MDBModalBody>
+                                    <h4>{ }</h4>
                                     <div className="mb-3">
-                                        <label htmlFor="firstName" className="form-label">First name</label>
-                                        <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.firstName} id="firstName" required />
+                                        <label htmlFor="firstName" className="form-label" >First Name</label>
+                                        <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.firstName} id="firstName" placeholder={datosModal.firstName} required />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="lastName" className="form-label">Last Name
                                             <span className="text-muted"></span></label>
-                                        <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.lastName} id="lastName" required />
+                                        <input type="text" className="form-control" onChange={(e) => handle(e)} value={data.lastName} id="lastName" placeholder={datosModal.lastName} required />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">Email
                                             <span className="text-muted"></span></label>
-                                        <input type="email" className="form-control" onChange={(e) => handle(e)} value={data.email} id="email" placeholder={contacts.email} required />
+                                        <input type="email" className="form-control" onChange={(e) => handle(e)} value={data.email} id="email" placeholder={datosModal.email} required />
                                     </div>
 
                                     <div className="mb-3">
-                                        <label htmlFor="_id" className="form-label">Select the correct ID to edit</label>
-                                        <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control" name="_id" placeholder="Please re-enter the ID to confirm" value={data._id} required>
-                                            <option value="">Choose ...</option>
-                                            {contacts.map((contact) => (
-                                                <option>{contact._id}</option>
-                                            ))}
-                                        </Form.Select>
+                                        <label htmlFor="_id" className="form-label">Selected ID to edit</label>
+                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
@@ -242,16 +252,9 @@ function Views() {
                             </MDBModalHeader>
                             <form onSubmit={(e) => submitDel(e)}>
                                 <MDBModalBody>
-                                    <strong>Please select the ID to remove</strong>
-                                    <hr />
-                                    <div className="mb-3">
-                                        <label htmlFor="_id" className="form-label">Are you sure to delete?</label>
-                                        <Form.Select onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={data._id} required >
-                                            <option value="">Choose ...</option>
-                                            {contacts.map((contact) => (
-                                                <option>{contact._id}</option>
-                                            ))}
-                                        </Form.Select>
+                                    <strong>Are you sure to delete?</strong>
+                                    <div className="mt-3 mb-5">
+                                        <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
