@@ -226,7 +226,7 @@ function Views() {
 
                                     <div className="mb-3">
                                         <label htmlFor="_id" className="form-label">Selected ID to edit</label>
-                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={data._id} placeholder={datosModal._id} disabled />
+                                        <input onChange={(e) => handle(e)} id="_id" className="form-control" name="_id" value={datosModal._id} placeholder={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
@@ -253,7 +253,7 @@ function Views() {
                                 <MDBModalBody>
                                     <strong>Are you sure to delete?</strong>
                                     <div className="mt-3 mb-5">
-                                        <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={data._id} placeholder={datosModal._id} disabled />
+                                        <input onChange={(e) => handle(e)} id="_id" type="text" className="form-control " name="_id" value={datosModal._id} placeholder={datosModal._id} disabled />
                                     </div>
                                 </MDBModalBody>
                                 <MDBModalFooter>
